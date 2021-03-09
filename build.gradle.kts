@@ -57,6 +57,8 @@ tasks {
             jvmTarget = "11"
         }
     }
-
-
+    create("stage") {
+        dependsOn("installDist")
+    }
 }
+

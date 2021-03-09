@@ -1,13 +1,9 @@
-## Micronaut 2.3.4 Documentation
+# PIDIR - A raspberry PI directory service
 
-- [User Guide](https://docs.micronaut.io/2.3.4/guide/index.html)
-- [API Reference](https://docs.micronaut.io/2.3.4/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/2.3.4/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+Tired of having to go hunt down your R-Pis ip addresses? Maybe you'd like to be able to keep track of all your Pis status? Maybe you'd like to make your Pis discoverable by other Pis on your network?
 
-## Feature http-client documentation
+Well this will do it for you! It's pretty much Eureka for Raspberry Pis.
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+This is in it's initial state, more details coming soon once its fully built out and tested.
 
-# pidir
+
