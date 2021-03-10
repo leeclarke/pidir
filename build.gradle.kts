@@ -58,7 +58,7 @@ tasks {
         }
     }
     create("stage") {
-        dependsOn("installDist")
+        dependsOn("installDist", "shadowJar")
     }
 }
 
