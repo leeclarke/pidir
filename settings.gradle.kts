@@ -1,1 +1,1 @@
-rootProject.name="pidir"
+rootProject.name = "pidir"

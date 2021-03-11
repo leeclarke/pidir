@@ -1,1 +1,1 @@
-web: java -jar ./build/libs/pidir-0.1-all.jar
+web: java -jar ./build/libs/pidir-0.1.jar

@@ -1,12 +1,12 @@
-package meadowhawk.service
+package meadowhawk.pidir.service
 
+import org.springframework.stereotype.Service
 import java.time.LocalDateTime
-import javax.inject.Singleton
 import java.util.concurrent.TimeUnit
 
 data class Pi(val name: String, val ip: String, val network: String, val tag: String, val timestamp: LocalDateTime = LocalDateTime.now())
 
-@Singleton
+@Service
 class PiService{
     private val pis = mutableMapOf<String, Pi>()
 
@@ -24,8 +24,8 @@ class PiService{
         return pis[newPi.name]
     }
 
-    fun removePi(pi: Pi) {
-        pis.remove(pi.name)
+    fun removePi(name: String) {
+        pis.remove(name)
     }
 
     fun getPis() : List<Pi> {

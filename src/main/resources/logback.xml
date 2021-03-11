@@ -1,5 +1,4 @@
 <configuration>
-<!--    <logger name="io.micronaut.context.condition" level="trace" />-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>false</withJansi>

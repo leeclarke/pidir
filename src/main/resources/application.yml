@@ -1,6 +1,0 @@
-micronaut:
-  application:
-    name: pidir
-  caches:
-    pis:
-      charset: 'UTF-8'

@@ -1,64 +1,47 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.10"
-    id("org.jetbrains.kotlin.kapt") version "1.4.10"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.4.10"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
-    id("io.micronaut.application") version "1.3.4"
+	id("org.springframework.boot") version "2.4.3"
+	id("io.spring.dependency-management") version "1.0.11.RELEASE"
+	kotlin("jvm") version "1.4.30"
+	kotlin("plugin.spring") version "1.4.30"
 }
 
+group = "meadowhawk.pidir"
 version = "0.1"
-group = "meadowhawk"
+java.sourceCompatibility = JavaVersion.VERSION_11
 
-val kotlinVersion=project.properties.get("kotlinVersion")
 repositories {
-    mavenCentral()
-}
-
-micronaut {
-    runtime("netty")
-    testRuntime("junit5")
-    processing {
-        incremental(true)
-        annotations("meadowhawk.*")
-    }
+	mavenCentral()
 }
 
 dependencies {
-    implementation("io.micronaut:micronaut-validation")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
-    implementation("io.micronaut:micronaut-runtime")
-    implementation("javax.annotation:javax.annotation-api")
-    implementation("io.micronaut:micronaut-http-client")
-    runtimeOnly("ch.qos.logback:logback-classic")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.micronaut.cache:micronaut-cache-caffeine")
-    implementation ( "com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+//		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+//		exclude(module = "mockito-core")
+	}
+	testImplementation("org.springframework.security:spring-security-test")
+//	testImplementation("com.ninja-squad:springmockk:2.0.1")
+
 }
 
-
-application {
-    mainClass.set("meadowhawk.ApplicationKt")
+tasks.withType<KotlinCompile> {
+	kotlinOptions {
+		freeCompilerArgs = listOf("-Xjsr305=strict")
+		jvmTarget = "11"
+	}
 }
 
-java {
-    sourceCompatibility = JavaVersion.toVersion("11")
+tasks.withType<Test> {
+	useJUnitPlatform()
 }
 
-tasks {
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-    compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-    create("stage") {
-        dependsOn("installDist", "shadowJar")
-    }
+tasks.create("stage") {
+	dependsOn("bootJar")
 }
-
