@@ -8,6 +8,7 @@
 #--------------------------------------
 import requests
 import socket
+import os.path
 
 def deriveIp():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
